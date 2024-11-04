@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_201052) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_214310) do
   create_table "addresses", force: :cascade do |t|
     t.string "city"
     t.string "state"
@@ -18,4 +18,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_201052) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "forecasts", force: :cascade do |t|
+    t.string "kind"
+    t.integer "current_temp"
+    t.integer "high_temp"
+    t.integer "low_temp"
+    t.integer "address_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_forecasts_on_address_id"
+  end
+
+  add_foreign_key "forecasts", "addresses"
 end
