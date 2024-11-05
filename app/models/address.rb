@@ -1,9 +1,19 @@
 class Address < ApplicationRecord
   has_many :forecasts
 
+  accepts_nested_attributes_for :forecasts
+
   validates :city, presence: true, length: {in: 2..49}, uniqueness: { scope: [:state, :zip_code] }
   validates :state, presence: true, length: {in: 2..49}
   validates :zip_code, presence: true, length: {in: 5..9}
+
+  def self.get_address(city:, state:, zip_code:)
+    find_by("city = ? AND state = ? AND zip_code = ?", city, state, zip_code)
+  end
+
+  def self.get_by_zip(zip_code:)
+    where("zip_code = ?", zip_code)
+  end
 
   def current_forecast
     forecasts.find_by(kind: "current")
@@ -13,7 +23,11 @@ class Address < ApplicationRecord
     forecasts.find_by(kind: "one_day")
   end
 
-  def seven_day_forecast
-    forecasts.find_by(kind: "seven_day")
+  def max_temp
+    forecasts.maximum(:high_temp)
+  end
+
+  def min_temp
+    forecasts.minimum(:low_temp)
   end
 end
