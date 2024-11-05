@@ -1,0 +1,28 @@
+<p>
+  <strong>City:</strong>
+  <%= @address.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @address.state %>
+</p>
+
+<p>
+  <strong>Zip Code:</strong>
+  <%= @address.zip_code %>
+</p>
+
+<br/>
+<h4>Forecasts</h4>
+
+<% @address.forecasts.each do |forecast| %>
+  <p>Forecast Type: <%= forecast.kind %></p>
+  <p>Current Temperature: <%= forecast.current_temp %></p>
+  <p>High Temperature: <%= forecast.high_temp %></p>
+  <p>Low Temperature: <%= forecast.low_temp %></p>
+  <hr/>
+<% end %>
+
+<%= link_to 'Edit', edit_address_path(@address) %>
+<%= link_to 'Index', addresses_path %>
