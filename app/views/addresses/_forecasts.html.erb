@@ -1,0 +1,11 @@
+<% address.forecasts.each do |forecast| %>
+  <p>Forecast Type: <%= forecast.kind %></p>
+  <p>Current Temperature: <%= forecast.current_temp %></p>
+  <p>High Temperature: <%= forecast.high_temp %></p>
+  <p>Low Temperature: <%= forecast.low_temp %></p>
+  <hr/>
+<% end %>
+<strong>High/Low Temperatures</strong>
+<br/>
+<strong><%= address.max_temp %></strong>/<strong><%= address.min_temp %></strong>
+<hr/>
