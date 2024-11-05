@@ -1,0 +1,55 @@
+<%= form_with(model: address) do |form| %>
+  <% if address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+        <% address.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip_code %>
+    <%= form.text_field :zip_code %>
+  </div>
+
+  <h3>For the forecasts</h3>
+  <%= form.fields_for :forecasts do |forecast_subform| %>
+    <%= forecast_subform.select(:kind, options_for_select([["Current Forecast", "current"], ["One Day Forecast", "one_day"]], selected: address.forecasts.collect { |f| f.kind })) %>
+    <br/>
+    <%= forecast_subform.label :current_temp %>
+    <%= forecast_subform.text_field :current_temp %>
+    <br/>
+    <%= forecast_subform.label :high_temp %>
+    <%= forecast_subform.text_field :high_temp %>
+    <br/>
+    <%= forecast_subform.label :low_temp %>
+    <%= forecast_subform.text_field :low_temp %>
+    <br/><br/>
+  <% end %>
+
+  <br/><br/>
+  <div class="actions">
+    <%= form.submit "Submit" %>
+  </div>
+<% end %>
+
+<br/>
+<%= link_to 'Index', addresses_path %>
+|
+<%= link_to 'Find Addresses', find_addresses_path %>
+|
+<%= link_to 'Find Addresses by Zip', find_by_zip_addresses_path %>
