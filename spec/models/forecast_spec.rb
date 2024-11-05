@@ -17,16 +17,14 @@ RSpec.describe Forecast, type: :model do
       specify { expect(forecast.valid?).to be false }
     end
 
-    context "with 'ten_day' kind: only 'current', 'one_day', 'seven_day' accepted" do
+    context "with 'ten_day' kind: only 'current' and 'one_day' accepted" do
       let(:forecast) { address.forecasts.build(kind: "ten_day", current_temp: 66, high_temp: 77, low_temp: 55) }
       specify { expect(forecast.valid?).to be false }
     end
 
-    context "with 'one_day' and 'seven_day' kinds" do
+    context "with 'one_day' kind" do
       let(:forecast_one_day) { address.forecasts.build(kind: "one_day", current_temp: 66, high_temp: 77, low_temp: 55) }
-      let(:forecast_seven_day) { address.forecasts.build(kind: "seven_day", current_temp: 66, high_temp: 77, low_temp: 55) }
       specify { expect(forecast_one_day.valid?).to be true }
-      specify { expect(forecast_seven_day.valid?).to be true }
     end
 
     context "with current_temp too high" do
