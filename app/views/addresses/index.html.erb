@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Addresses</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip Code</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.city %></td>
+      <td><%= address.state %></td>
+      <td><%= address.zip_code %></td>
+      <td><%= link_to 'Show', address %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Address', new_address_path %>
+|
+<%= link_to 'Find Addresses', find_addresses_path %>
+|
+<%= link_to 'Find Addresses by Zip', find_by_zip_addresses_path %>
