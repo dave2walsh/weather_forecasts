@@ -1,0 +1,19 @@
+<h2>Forecasts for </h2>
+<p>Zip Code: <%= params[:zip_code] %></p>
+
+<p>Pulling from cache? <%= @cache_miss.nil? %> </p>
+
+<hr/>
+
+<% if @addresses.present? %>
+  <% @addresses.each do |address| %>
+    <%= render 'forecasts', address: address %>
+    <hr/>
+  <% end %>
+<% else %>
+  <h4>No result was found</h4>
+<% end %>
+
+<%= link_to 'Index', addresses_path %>
+|
+<%= link_to 'Find Addresses', find_addresses_path %>
