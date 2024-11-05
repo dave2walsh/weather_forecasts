@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_214310) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_234900) do
   create_table "addresses", force: :cascade do |t|
     t.string "city"
     t.string "state"
     t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city", "state", "zip_code"], name: "index_addresses_on_city_and_state_and_zip_code", unique: true
   end
 
   create_table "forecasts", force: :cascade do |t|
