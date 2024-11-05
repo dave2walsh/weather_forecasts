@@ -8,4 +8,12 @@ class Address < ApplicationRecord
   def current_forecast
     forecasts.find_by(kind: "current")
   end
+
+  def one_day_forecast
+    forecasts.find_by(kind: "one_day")
+  end
+
+  def seven_day_forecast
+    forecasts.find_by(kind: "seven_day")
+  end
 end
