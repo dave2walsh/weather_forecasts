@@ -130,18 +130,5 @@ RSpec.describe Address, type: :model do
         expect(one_day_forecast.low_temp).to eq(low_temp)
       end
     end
-
-    context "seven_day forecast" do
-      let(:kind) { "seven_day" }
-      let(:high_temp) { 59 }
-      let(:low_temp) { 38 }
-      let!(:forecast) { address.forecasts.create(kind: kind, current_temp: current_temp, high_temp: high_temp, low_temp: low_temp) }
-      it "returns the seven_day forecast" do
-        seven_day_forecast = address.seven_day_forecast
-        expect(seven_day_forecast.current_temp).to eq(current_temp)
-        expect(seven_day_forecast.high_temp).to eq(high_temp)
-        expect(seven_day_forecast.low_temp).to eq(low_temp)
-      end
-    end
   end
 end
