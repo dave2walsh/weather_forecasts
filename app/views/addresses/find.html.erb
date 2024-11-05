@@ -1,0 +1,19 @@
+<h2>Search Addresses for Forecasts</h2>
+
+<%= form_tag(search_addresses_path, method: :get) do -%>
+  <%= label_tag :city %>
+  <%= text_field_tag :city %>
+  <br/>
+  <%= label_tag :state %>
+  <%= text_field_tag :state %>
+  <br/>
+  <%= label_tag :zip_code %>
+  <%= text_field_tag :zip_code %>
+  <br/><br/>
+  <%= submit_tag 'Search' %>
+<% end -%>
+
+<br/>
+<%= link_to 'Index', addresses_path %>
+|
+<%= link_to 'Find Addresses by Zip', find_by_zip_addresses_path %>
