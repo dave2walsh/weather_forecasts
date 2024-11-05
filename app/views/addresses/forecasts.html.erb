@@ -1,0 +1,19 @@
+<h2>Forecasts for </h2>
+
+<p>City: <%= params[:city] %></p>
+<p>State: <%= params[:state] %></p>
+<p>Zip Code: <%= params[:zip_code] %></p>
+
+<hr/>
+
+<% if @address.present? %>
+  <%= render 'forecasts', address: @address %>
+<% else %>
+  <h4>No result was found</h4>
+<% end %>
+
+<%= link_to 'Index', addresses_path %>
+|
+<%= link_to 'Find Addresses', find_addresses_path %>
+|
+<%= link_to 'Find Addresses by Zip', find_by_zip_addresses_path %>
