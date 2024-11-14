@@ -1,6 +1,6 @@
 # README
 
-This application does the following:
+This is quite a basic application now, but it does the following:
 
 * Saves addresses along with their associated forecasts
 
@@ -43,6 +43,8 @@ This application does the following:
 * Have a better UI
 
 # Assumptions
+
+* No street address is necessary, since the weather is assumed to be uniform within a zip code
 
 * Only a small number of addresses will be saved, as addresses#index grabs all the addresses
 
