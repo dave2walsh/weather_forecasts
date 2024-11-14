@@ -26,7 +26,7 @@ This application does the following:
 
 * Retrieves forecast data for a given address, which includes the current temperature,
 
-# Things that need improvement if time allowed
+# Things that need improvement
 
 * Do not allow a current temperature to be saved for one_day forecasts
 
@@ -34,17 +34,27 @@ This application does the following:
 
 * For each forecast, saving a low temperature that's higher than the high temperature should not be allowed
 
-* Needs more model, such as tests for Address.get_address and Address.get_by_zip 
+* Needs more model specs, such as tests for Address.get_address and Address.get_by_zip 
 
-* Needs requests tests for AddressesController#find, AddressesController#find_by_zip, AddressesController#search and AddressesController#search_by_zip
+* Needs request tests for AddressesController#find, AddressesController#find_by_zip, AddressesController#search and AddressesController#search_by_zip
 
-* Better UI
+* Allow updating and deleting addresses and forecasts
+
+* Have a better UI
 
 # Assumptions
 
 * Only a small number of addresses will be saved, as addresses#index grabs all the addresses
 
 * Temperatures are in Fahrenheit
+
+# For the future
+
+* Integrate an external weather API and display the results in views
+
+* Features such as searching and filtering will depend on the functionality of the API
+
+* Geolocate the user and show current and extended forcasts for the location when the root page loads
 
 # How to run
 
@@ -55,5 +65,7 @@ This application does the following:
 * rails dev:cache to turn on caching in development 
 
 * rails s
+
+* http://localhost:3000
 
 * ...
