@@ -24,7 +24,7 @@ This is quite a basic application now, but it does the following:
 
 * Allows searches by addresses
 
-* Retrieves forecast data for a given address, which includes the current temperature,
+* Retrieves forecast data for a given address, which includes the current temperature
 
 # Things that need improvement
 
@@ -39,6 +39,8 @@ This is quite a basic application now, but it does the following:
 * Needs request tests for AddressesController#find, AddressesController#find_by_zip, AddressesController#search and AddressesController#search_by_zip
 
 * Allow updating and deleting addresses and forecasts
+
+* Expand beyond just the temperature forecast to include humidity, precipitation, cloud cover etc.
 
 * Have a better UI
 
