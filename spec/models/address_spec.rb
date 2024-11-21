@@ -10,62 +10,19 @@ RSpec.describe Address, type: :model do
       specify { expect(address.valid?).to be true }
     end
 
-    context "with no city" do
-      let(:state) { "California" }
-      let(:zip_code) { "123456" }
-      let(:address) { Address.new(state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
-    end
+    it { should validate_presence_of(:city) }
 
-    context "with no state" do
-      let(:city) { "Redville" }
-      let(:zip_code) { "123456" }
-      let(:address) { Address.new(city: city, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
-    end
+    it { should validate_presence_of(:state) }
 
-    context "with no zip_code" do
-      let(:city) { "Redville" }
-      let(:state) { "California" }
-      let(:address) { Address.new(city: city, state: state) }
-      specify { expect(address.valid?).to be false }
-    end
+    it { should validate_presence_of(:zip_code) }
 
-    context "range of length for city" do
-      specify do
-        should validate_length_of(:city).is_at_least(2).is_at_most(49)
-      end
-    end
+    it { should validate_length_of(:city).is_at_least(2).is_at_most(49) }
 
-    context "range of length for state" do
-      specify do
-        should validate_length_of(:state).is_at_least(2).is_at_most(49)
-      end
-    end
+    it { should validate_length_of(:state).is_at_least(2).is_at_most(49) }
 
-    context "range of length for zip_code" do
-      specify do
-        should validate_length_of(:zip_code).is_at_least(5).is_at_most(9)
-      end
-    end
+    it { should validate_length_of(:zip_code).is_at_least(5).is_at_most(9) }
 
-    context "with repeated address" do
-      let(:city) { "Redvillelal" }
-      let(:state) { "California" }
-      let(:zip_code) { "12348" }
-      let!(:address1) { Address.create(city: city, state: state, zip_code: zip_code) }
-      let(:address2) { Address.build(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address2.valid?).to be false }
-    end
-
-    context "with repeated city and state" do
-      let(:city) { "Redvillelal" }
-      let(:state) { "California" }
-      let(:zip_code) { "12348" }
-      let!(:address1) { Address.create(city: city, state: state, zip_code: zip_code) }
-      let(:address2) { Address.build(city: city, state: state, zip_code: "98765") }
-      specify { expect(address2.valid?).to be true }
-    end
+    it { should validate_uniqueness_of(:city).scoped_to(:state, :zip_code) }
   end
 
   describe "getting the forecasts for an address" do
