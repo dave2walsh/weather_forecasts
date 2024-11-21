@@ -31,52 +31,22 @@ RSpec.describe Address, type: :model do
       specify { expect(address.valid?).to be false }
     end
 
-    context "with city too long" do
-      let(:city) { "Redvillelal"*5 }
-      let(:state) { "California" }
-      let(:zip_code) { "123456" }
-      let(:address) { Address.new(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
+    context "range of length for city" do
+      specify do
+        should validate_length_of(:city).is_at_least(2).is_at_most(49)
+      end
     end
 
-    context "with city too short" do
-      let(:city) { "R" }
-      let(:state) { "California" }
-      let(:zip_code) { "123456" }
-      let(:address) { Address.new(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
+    context "range of length for state" do
+      specify do
+        should validate_length_of(:state).is_at_least(2).is_at_most(49)
+      end
     end
 
-    context "with state too long" do
-      let(:city) { "Redvillelal" }
-      let(:state) { "Californias"*5 }
-      let(:zip_code) { "123456" }
-      let(:address) { Address.new(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
-    end
-
-    context "with state too short" do
-      let(:city) { "Redvillelal" }
-      let(:state) { "C" }
-      let(:zip_code) { "123456" }
-      let(:address) { Address.new(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
-    end
-
-    context "with zip_code too long" do
-      let(:city) { "Redvillelal" }
-      let(:state) { "Californias" }
-      let(:zip_code) { "1234567890" }
-      let(:address) { Address.new(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
-    end
-
-    context "with state too short" do
-      let(:city) { "Redvillelal" }
-      let(:state) { "California" }
-      let(:zip_code) { "1234" }
-      let(:address) { Address.new(city: city, state: state, zip_code: zip_code) }
-      specify { expect(address.valid?).to be false }
+    context "range of length for zip_code" do
+      specify do
+        should validate_length_of(:zip_code).is_at_least(5).is_at_most(9)
+      end
     end
 
     context "with repeated address" do
