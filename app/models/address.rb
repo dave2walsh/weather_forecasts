@@ -5,6 +5,7 @@ class Address < ApplicationRecord
 
   validates :city, presence: true, length: {in: 2..49}, uniqueness: { scope: [:state, :zip_code] }
   validates :state, presence: true, length: {in: 2..49}
+  # Some US zip codes can be 9 characters long
   validates :zip_code, presence: true, length: {in: 5..9}
 
   def self.get_address(city:, state:, zip_code:)
