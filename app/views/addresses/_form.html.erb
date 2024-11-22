@@ -28,7 +28,7 @@
 
   <h3>For the forecasts</h3>
   <%= form.fields_for :forecasts do |forecast_subform| %>
-    <%= forecast_subform.select(:kind, options_for_select([["Current Forecast", "current"], ["One Day Forecast", "one_day"]], selected: address.forecasts.collect { |f| f.kind })) %>
+    <%= forecast_subform.select(:kind, options_for_select(Rails.configuration.forecast_types_options, selected: address.forecasts.collect { |f| f.kind })) %>
     <br/>
     <%= forecast_subform.label :current_temp %>
     <%= forecast_subform.text_field :current_temp %>
