@@ -34,10 +34,11 @@ class AddressesController < ApplicationController
   end
 
   def search_by_zip
-    @addresses = Rails.cache.fetch("addresses_by_zip", expires_in: 30.minutes) do
-      @cache_miss = true
-      Address.get_by_zip(zip_code: params[:zip_code])
-    end
+    # @addresses = Rails.cache.fetch("addresses_by_zip", expires_in: 30.minutes) do
+    #   @cache_miss = true
+    #   Address.get_by_zip(zip_code: params[:zip_code])
+    # endxs
+    @addresses = Address.get_by_zip(zip_code: params[:zip_code])
     render :zip_forecasts
   end
 
