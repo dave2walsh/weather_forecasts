@@ -9,11 +9,11 @@ class Address < ApplicationRecord
   validates :zip_code, presence: true, length: { in: 5..9 }
 
   def self.get_address(city:, state:, zip_code:)
-    find_by("city = ? AND state = ? AND zip_code = ?", city, state, zip_code)
+    find_by("lower(city) = ? AND lower(state) = ? AND lower(zip_code) = ?", city.downcase, state.downcase, zip_code.downcase)
   end
 
   def self.get_by_zip(zip_code:)
-    where("zip_code = ?", zip_code)
+    where("lower(zip_code) = ?", zip_code.downcase)
   end
 
   def current_forecast
