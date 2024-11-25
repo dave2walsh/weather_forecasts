@@ -39,6 +39,9 @@ module WeatherForecasts
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Opt in to new behaviour of to_time in Rails 8.1
+    config.active_support.to_time_preserves_timezone = :zone
+
     config.forecast_types_options = { "Current Forecast" => "current", "One Day Forecast" => "one_day" }
   end
 end
