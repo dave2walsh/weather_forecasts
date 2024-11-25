@@ -10,8 +10,7 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
-    @address.forecasts.build
-    @address.forecasts.build
+    Rails.configuration.forecast_types_options.size.times { @address.forecasts.build }
   end
 
   def create
