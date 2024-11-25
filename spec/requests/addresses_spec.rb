@@ -31,8 +31,8 @@ RSpec.describe "Addresses", type: :request do
     let(:city) { "Fargo" }
     let(:state) { "Alaska" }
     let(:zip_code) { "123456" }
-    let(:forecasts_params) { {kind: "one_day", current_temp: 66, high_temp: 77, low_temp: 55} }
-    let(:address_params) { {address: {city: city, state: state, zip_code: zip_code, forecasts: forecasts_params}} }
+    let(:forecasts_params) { { kind: "one_day", current_temp: 66, high_temp: 77, low_temp: 55 } }
+    let(:address_params) { { address: { city: city, state: state, zip_code: zip_code, forecasts: forecasts_params } } }
     context "with valid params" do
       it "redirects" do
         post "/addresses", params: address_params

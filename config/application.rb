@@ -39,6 +39,6 @@ module WeatherForecasts
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.forecast_types_options = {"Current Forecast" => "current", "One Day Forecast" => "one_day"}
+    config.forecast_types_options = { "Current Forecast" => "current", "One Day Forecast" => "one_day" }
   end
 end

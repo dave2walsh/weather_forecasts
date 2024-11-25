@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show]
+  before_action :set_address, only: [ :show ]
 
   def index
     @addresses = Address.all
@@ -35,7 +35,7 @@ class AddressesController < ApplicationController
   end
 
   def search_by_zip
-    @addresses = Rails.cache.fetch('addresses_by_zip', expires_in: 30.minutes) do
+    @addresses = Rails.cache.fetch("addresses_by_zip", expires_in: 30.minutes) do
       @cache_miss = true
       Address.get_by_zip(zip_code: params[:zip_code])
     end
@@ -45,7 +45,7 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:city, :state, :zip_code, forecasts_attributes: [:kind, :current_temp, :high_temp, :low_temp, :id])
+    params.require(:address).permit(:city, :state, :zip_code, forecasts_attributes: [ :kind, :current_temp, :high_temp, :low_temp, :id ])
   end
 
   def set_address
